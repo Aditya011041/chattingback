@@ -72,12 +72,12 @@ const userSchema = new mongoose.Schema({
     },
   ],
   socket_id: {
-    type: String
+    type: String,
   },
   status: {
     type: String,
-    enum: ["Online", "Offline"]
-  }
+    enum: ["Online", "Offline"],
+  },
 });
 
 userSchema.pre("save", async function (next) {

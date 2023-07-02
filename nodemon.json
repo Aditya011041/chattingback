@@ -1,7 +1,11 @@
 {
-  "env": {
-    "SG_KEY": "",
-    "ZEGO_APP_ID": 1642584767,
-    "ZEGO_SERVER_SECRET": "71f6f8fd524f17d45aab8e9522ce95b1"
+ 
+  "env" : {
+
+      "SG_KEY" : "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",
+      "ZEGO_APP_ID": 1798717391,
+      "ZEGO_SERVER_SECRET": "49376d83f522899c9f13cc0b7dbfa781"
   }
+
+
 }

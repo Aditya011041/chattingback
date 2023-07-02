@@ -31,9 +31,9 @@ const io = new Server(server, {
   },
 });
 
-const DB = process.env.DATABASE.replace(
+const DB = process.env.DBURI.replace(
   "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
+  process.env.DBPASSWORD
 );
 
 mongoose
@@ -83,12 +83,13 @@ io.on("connection", async (socket) => {
       recipient: data.to,
     });
     // emit event request received to recipient
-    io.to(to?.socket_id).emit("new_friend_request", {
-      message: "New friend request received",
-    });
     io.to(from?.socket_id).emit("request_sent", {
       message: "Request Sent successfully!",
     });
+    io.to(to?.socket_id).emit("new_friend_request", {
+      message: "New friend request received",
+    });
+   
   });
 
   socket.on("accept_request", async (data) => {
@@ -202,7 +203,7 @@ io.on("connection", async (socket) => {
     // fetch OneToOneMessage Doc & push a new message to existing conversation
     const chat = await OneToOneMessage.findById(conversation_id);
     chat.messages.push(new_message);
-    // save to db`
+    // save to db
     await chat.save({ new: true, validateModifiedOnly: true });
 
     // emit incoming_message -> to user
